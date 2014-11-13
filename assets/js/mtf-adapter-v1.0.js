@@ -69,9 +69,10 @@ function adjust() {
 
         case "cover":
             $("#mtf").css({
-                position:   "fixed",
-                width:      "100%",
-                height:     "100%"
+                position:   		"fixed",
+                width:      		"100%",
+                height:     		"100%",
+				backgroundColor:	"black"
             });
             break;
 
