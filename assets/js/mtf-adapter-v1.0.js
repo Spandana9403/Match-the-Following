@@ -15,17 +15,17 @@ var objects;
 mtf.init = init();
 
 
-
-
 function init() {
 
     adjust();
     addHTML();
+	style();
 }
 
 function addHTML() {
     appendHTML("mtf", 'div', mtf.div.hud);
     appendHTML("mtf", 'div', mtf.div.wrapper);
+    appendHTML("mtf", 'div', mtf.div.container);
 
     switch(mtf.orientation)
     {
@@ -68,40 +68,63 @@ function adjust() {
     switch(mtf.game.size) {
 
         case "cover":
-            $("#mtf").css({
-                position:   		"fixed",
-                width:      		"100%",
-                height:     		"100%",
-				backgroundColor:	"black"
-            });
+            mtf_css("cover");
             break;
 
         case "fixed":
-            $("#mtf").css({
-                position:   "fixed",
-                width:      mtf.game.width,
-                height:     mtf.game.height
-            });
-            console.log("In fixed case");
+            mtf_css("fixed");
+			console.log("In fixed case");
             break;
 
         default:
-            $("#mtf").css({
-                width:              "640px",
-                height:             "480px",
-                position:           "fixed",
-                overflow:           "auto",
-                display:            "inline-block",
-                top:                0,
-                left:               0,
-                bottom:             0,
-                right:              0,
-                margin:             "auto",
-                backgroundColor:    "black"
-            });
+            mtf_css("default")
             console.log("In default case");
             break;
     }
+}
+
+function mtf_css(str) {
+//	console.log(str);
+	setTimeout(function() {
+		console.log(str);
+		$("#mtf").css({
+			position:		"fixed",
+			overflow:		"auto",
+			display:		"block",
+			top:			0,
+			left:			0,
+			bottom:			0,
+			right:			0,
+		});
+
+		switch(str) {
+			case "cover":
+				$("#mtf").css({
+					width:		"100vw",
+					height:		"100vh",
+					backgroundColor: "black"
+				});
+				break;
+
+			case "fixed":
+				$("#mtf").css({
+					width:		mtf.game.width,
+					height:		mtf.game.height,
+					margin:		"auto",
+					backgroundColor: "black"
+				});
+				break;
+
+			default:
+				$("#mtf").css({
+					width:		"640px",
+					height:		"480px",
+					margin:		"auto",
+					backgroundColor: "black"
+				});
+				break;
+		}
+	}, 1);
 }
 
 //shuffle function

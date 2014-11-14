@@ -28,4 +28,4 @@ mtf.data = [
         image:      "You can also have an image instead of the answer in text! Just set the name of the image WITH the extension!"
 
     }
-]
+];
